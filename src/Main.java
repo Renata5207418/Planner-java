@@ -23,7 +23,8 @@ public class Main {
                 System.out.println("Tarefa adicionada com sucesso!");
             } else if (opcao ==2) {
                 listarTarefas(tarefas);
-
+            } else if (opcao == 3) {
+                concluirTarefa(tarefas, entrada);    
             } else if (opcao == 0) {
                 System.out.println("Encerrando o planner...");
 
@@ -35,9 +36,10 @@ public class Main {
     }
 
     public static void exibirMenu() {
-        System.out.println("=== Planner de Tarefas ===");
+        System.out.println("\n=== Planner de Tarefas ===");
         System.out.println("1. Adicionar Tarefa");
         System.out.println("2. Listar Tarefas");
+        System.out.println("3. Marcar Tarefa como Concluída");
         System.out.println("0. Sair");
         System.out.print("Escolha uma opção: ");
     }
@@ -54,5 +56,32 @@ public class Main {
                 System.out.println((i + 1) + " - " + status + " " + tarefa.getTitulo());
 }
         }
+    }
+
+    public static void concluirTarefa(ArrayList<Tarefa> tarefas, Scanner entrada) {
+        System.out.println("\n=== Marcar Tarefa como Concluída ===");
+
+        if (tarefas.isEmpty()) {
+            System.out.println("Nenhuma tarefa cadastrada.");
+            return;
+        }
+
+        listarTarefas(tarefas);
+        System.out.print("Digite o número da tarefa as ser concluida: ");
+        int numeroTarefa =  entrada.nextInt();
+        entrada.nextLine();
+
+        int indice = numeroTarefa - 1;
+
+        if (indice >= 0 && indice < tarefas.size()) {
+            Tarefa tarefa = tarefas.get(indice);
+            tarefa.concluir();
+
+            System.out.println("Tarefa marcada como concluída!");
+        } else {
+            System.out.println("Número de tarefa inválido. Tente novamente.");
+        }
+
+
     }
 }
