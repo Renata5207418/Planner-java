@@ -21,10 +21,16 @@ public class Main {
                 tarefas.add(novaTarefa);
 
                 System.out.println("Tarefa adicionada com sucesso!");
-            } else if (opcao ==2) {
+
+            } else if (opcao == 2) {
                 listarTarefas(tarefas);
+
             } else if (opcao == 3) {
-                concluirTarefa(tarefas, entrada);    
+                concluirTarefa(tarefas, entrada);
+
+            } else if (opcao == 4) {
+                removerTarefa(tarefas, entrada);
+
             } else if (opcao == 0) {
                 System.out.println("Encerrando o planner...");
 
@@ -40,6 +46,7 @@ public class Main {
         System.out.println("1. Adicionar Tarefa");
         System.out.println("2. Listar Tarefas");
         System.out.println("3. Marcar Tarefa como Concluída");
+        System.out.println("4. Excluir Tarefa");
         System.out.println("0. Sair");
         System.out.print("Escolha uma opção: ");
     }
@@ -83,5 +90,30 @@ public class Main {
         }
 
 
+    }
+
+    public static void removerTarefa(ArrayList<Tarefa> tarefas, Scanner entrada) {
+        System.out.println("\n=== Remover Tarefa ===");
+
+        if (tarefas.isEmpty()) {
+            System.out.println("Nenhuma tarefa cadastrada.");
+            return;
+        }
+
+        listarTarefas(tarefas);
+
+        System.out.print("Digite o número da tarefa que deseja remover: ");
+        int numeroTarefa = entrada.nextInt();
+        entrada.nextLine();
+
+        int indice = numeroTarefa - 1;
+
+        if (indice >= 0 && indice < tarefas.size()) {
+            Tarefa tarefaRemovida = tarefas.remove(indice);
+
+            System.out.println("Tarefa removida: " + tarefaRemovida.getTitulo());
+        } else {
+            System.out.println("Número de tarefa inválido. Tente novamente.");
+        }
     }
 }
