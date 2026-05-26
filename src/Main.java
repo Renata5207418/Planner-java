@@ -31,7 +31,13 @@ public class Main {
             } else if (opcao == 4) {
                 removerTarefa(tarefas, entrada);
 
-            } else if (opcao == 0) {
+            } else if (opcao == 5) {
+                editarTarefa(tarefas, entrada);
+
+            } else if (opcao == 6) {
+                reabrirTarefa(tarefas, entrada);
+            
+            }else if (opcao == 0) {
                 System.out.println("Encerrando o planner...");
 
             } else {
@@ -47,6 +53,8 @@ public class Main {
         System.out.println("2. Listar Tarefas");
         System.out.println("3. Marcar Tarefa como Concluída");
         System.out.println("4. Excluir Tarefa");
+        System.out.println("5. Editar Tarefa");
+        System.out.println("6. Reabrir Tarefa");
         System.out.println("0. Sair");
         System.out.print("Escolha uma opção: ");
     }
@@ -112,6 +120,63 @@ public class Main {
             Tarefa tarefaRemovida = tarefas.remove(indice);
 
             System.out.println("Tarefa removida: " + tarefaRemovida.getTitulo());
+        } else {
+            System.out.println("Número de tarefa inválido. Tente novamente.");
+        }
+    }
+
+    public static void editarTarefa(ArrayList<Tarefa> tarefas, Scanner entrada) {
+        System.out.println("\n=== Editar Tarefa ===");
+
+        if (tarefas.isEmpty()) {
+            System.out.println("Nenhuma tarefa cadastrada.");
+            return;
+        }
+
+        listarTarefas(tarefas);
+
+        System.out.print("Digite o número da tarefa que deseja editar: ");
+        int numeroTarefa = entrada.nextInt();
+        entrada.nextLine();
+
+        int indice = numeroTarefa - 1;
+
+        if (indice >= 0 && indice < tarefas.size()) {
+            Tarefa tarefa = tarefas.get(indice);
+
+            System.out.println("Título atual: " + tarefa.getTitulo());
+            System.out.print("Digite o novo título: ");
+            String novoTitulo = entrada.nextLine();
+
+            tarefa.setTitulo(novoTitulo);
+
+            System.out.println("Tarefa editada com sucesso!");
+        } else {
+            System.out.println("Número de tarefa inválido. Tente novamente.");
+        }
+    }
+
+    public static void reabrirTarefa(ArrayList<Tarefa> tarefas, Scanner entrada) {
+        System.out.println("\n=== Reabrir Tarefa ===");
+
+        if (tarefas.isEmpty()) {
+            System.out.println("Nenhuma tarefa cadastrada.");
+            return;
+        }
+
+        listarTarefas(tarefas);
+
+        System.out.print("Digite o número da tarefa que deseja reabrir: ");
+        int numeroTarefa = entrada.nextInt();
+        entrada.nextLine();
+
+        int indice = numeroTarefa - 1;
+
+        if (indice >= 0 && indice < tarefas.size()) {
+            Tarefa tarefa = tarefas.get(indice);
+            tarefa.reabrir();
+
+            System.out.println("Tarefa reaberta com sucesso!");
         } else {
             System.out.println("Número de tarefa inválido. Tente novamente.");
         }

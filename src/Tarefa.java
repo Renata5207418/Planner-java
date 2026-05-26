@@ -11,6 +11,10 @@ public class Tarefa {
         return titulo;
     }
 
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
     public boolean isConcluida() {
         return concluida;
     }
@@ -18,5 +22,8 @@ public class Tarefa {
     public void concluir() {
         this.concluida = true;
     }
-    
+
+    public void reabrir() {
+        this.concluida = false;
+    }
 }
