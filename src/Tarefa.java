@@ -1,29 +1,26 @@
+import java.time.LocalDate;
+
 public class Tarefa {
+    private int id;
     private String titulo;
-    private boolean concluida;
+    private LocalDate data; // Substituiu o antigo diaSemana
+    private String horario;
+    private String descricao;
+    private String cor;
 
-    public Tarefa(String titulo) {
+    public Tarefa(int id, String titulo, LocalDate data, String horario, String descricao, String cor) {
+        this.id = id;
         this.titulo = titulo;
-        this.concluida = false;
+        this.data = data;
+        this.horario = horario;
+        this.descricao = descricao;
+        this.cor = cor;
     }
 
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public boolean isConcluida() {
-        return concluida;
-    }
-
-    public void concluir() {
-        this.concluida = true;
-    }
-
-    public void reabrir() {
-        this.concluida = false;
-    }
+    public int getId() { return id; }
+    public String getTitulo() { return titulo; }
+    public LocalDate getData() { return data; }
+    public String getHorario() { return horario; }
+    public String getDescricao() { return descricao; }
+    public String getCor() { return cor; }
 }
